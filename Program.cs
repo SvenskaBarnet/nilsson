@@ -107,25 +107,31 @@ foreach (string file in files)
                         break;
                     case 5:
                         day = (int)Weekday.Lördag;
-                        if (nilssonschema[9].Equals("Ledig"))
+                        if (nilssonschema[11].Equals("Ledig"))
                         {
                             Console.WriteLine($"{(Weekday)day}: Ledig!");
                         }
                         else
                         {
+                            hours = nilssonschema[11].Split('-');
+                            pay = Math.Round(CalculatePay(hours, day), 2, MidpointRounding.AwayFromZero);
+                            weekPay += pay;
                             Console.WriteLine($"{(Weekday)day}: {nilssonschema[11]}, {pay}kr");
                         }
                         pay = 0;
                         break;
                     case 6:
                         day = (int)Weekday.Söndag;
-                        if (nilssonschema[9].Equals("Ledig"))
+                        if (nilssonschema[11].Equals("Ledig"))
                         {
                             Console.WriteLine($"{(Weekday)day}: Ledig!");
                         }
                         else
                         {
-                            Console.WriteLine($"{(Weekday)day}: {nilssonschema[13]}, {pay}kr");
+                            hours = nilssonschema[11].Split('-');
+                            pay = Math.Round(CalculatePay(hours, day), 2, MidpointRounding.AwayFromZero);
+                            weekPay += pay;
+                            Console.WriteLine($"{(Weekday)day}: {nilssonschema[11]}, {pay}kr");
                         }
                         pay = 0;
                         break;
@@ -182,8 +188,21 @@ double CalculatePay(string[] hours, int weekday)
             }
             break;
         case 5:
+            if (start >= 12)
+            {
+                daypay = (finish - start - 0.5) * weekendOB;
+            }
+            else if (finish <= 12)
+            {
+                daypay = (finish - start - 0.5) * salary;
+            }
+            else
+            {
+                daypay = (((12 - start - 0.5) * salary) + ((finish - 12) * weekendOB));
+            }
             break;
         case 6:
+            daypay = (finish - start - 0.5) * weekendOB;
             break;
 
     }
