@@ -1,18 +1,19 @@
 Unnamed: 0,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5,Unnamed: 6,Unnamed: 7,Unnamed: 8,Unnamed: 9,Unnamed: 10,Unnamed: 11,Unnamed: 12,Unnamed: 13,Unnamed: 14,Unnamed: 15
-Butik,,, Arbetstidsschema,,,,,,,,Vecka:,V.2,,,
+Butik,,, Arbetstidsschema,,,,,,,,Vecka: 2,,,,
 ,,,,,,,,,,,,,,,
 ,Måndag,,Tisdag,,Onsdag,,Torsdag,,Fredag,,Lördag,,Söndag,,Totalt
 Datum,,,,,,,,,,,,,,,
 Datum,,,,,,,,,,,,,,,
 Info,,,,,,,,,,,,,,,
 Namn,Arb.tid,tim.,Arb.tid,tim,Arb.tid,tim,Arb.tid,tim,Arb.tid,tim,Arb.tid,tim,Arb.tid,tim,Arb.timmar
-Nemo,11-20,8,9-17,7.5,EMPORIA,,EMPORIA,,EMPORIA,,Ledig,,Ledig,,15.5
-Caroline,Ledig,,12-18,5.5,9.30-16,6,Ledig,,12-20,7.5,9.30-16,6,12-18,5.5,30.5
-Camilla,Ledig,,10-16,5.5,12-20,7.5,9.30-16,6,9.30-15,5,Ledig,,13-18,5,29
-Sandra,Ledig,,Ledig,,Ledig,,10-20,9,10-18,7.5,10-18,7.5,Ledig,,24
-Patricia,10-18,7.5,Ledig,,14-20,5.5,Ledig,,Ledig,,Ledig,,9.30-16,6,19
-Extra,9.30-16,6,15-20,5,Ledig,,13-18,5,Ledig,,12-18,5.5,Ledig,,21.5
+Camilla,9-20,10,9-16.30,7,9-17,7.5,9-17,7.5,9-16.30,7,Ledig,,Ledig,,39
+Sandra,Ledig,,11-18,6.5,10-15,5,13-20,6.5,Ledig,,Ledig,,Ledig,,18
+Annika,12-18,5.5,Ledig,,Ledig,,Ledig,,13-20,6.5,12-18,5.5,9.30-16,6,23.5
+Pernilla,Ledig,,Ledig,,15-20,5,11-18,6.5,Ledig,,9.30-15,5,12-18,5.5,22
+Extra,Ledig,,13-20,6.5,Ledig,,Ledig,,11-18,6.5,11-17,5.5,,,18.5
 ,,,,,,,,,,,,,,,0
 ,,,,,,,,,,,,,,,0
 ,,,,,,,,,,,,,,,0
-Totalt arb.tim.,,21.5,,23.5,,19,,20,,20,,19,,16.5,139.5
+,,,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0
+Totalt arb.tim.,,15.5,,20,,17.5,,20.5,,20,,16,,11.5,121
