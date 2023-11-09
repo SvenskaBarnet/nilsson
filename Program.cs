@@ -1,25 +1,71 @@
 ﻿using nilsson;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-//timlön = 159,45
-//ob50% - mån-fre 18.15 -
-//ob70% - mån-fre 20-
-//ob100% - lör 12 -, hela sön +  helgdag
 double salary = 159.45;
 double weekOB = salary * 1.5;
 double weekendOB = salary * 2;
 double pay = 0;
-string[] files = Directory.GetFiles("../../../files/");
 double monthPay = 0;
 string displayMonthPay;
-Console.WriteLine("Pernillas schema");
-Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~");
-foreach (string file in files)
+string[] excelFiles = Directory.GetFiles($"{Directory.GetCurrentDirectory()}/", "*.xls");
+double fixedOut = 0;
+double food = 0;
+double tax = 0.218005681404327;
+if (excelFiles.Length == 0)
 {
-    string[] schema = File.ReadAllLines(file);
-    Console.WriteLine($"{Path.GetFileName(file).Substring(0, 3)}\n");
-
-    foreach (string line in schema)
+    Console.WriteLine("Lägg Excelfilen i mappen Nilsson!");
+    Thread.Sleep(2000);
+    Environment.Exit(1000);
+}
+else if (excelFiles.Length > 1)
+{
+    Console.WriteLine("Bara en Excelfil hörru!");
+    Environment.Exit(1337);
+}
+else
+{
+    bool validInput;
+    do
     {
+        validInput = true;
+        Console.WriteLine("Hur mycket är dina fasta utgifter?\n(Tryck ENTER för att komma vidare)");
+        if (int.TryParse(Console.ReadLine(), out int value))
+        {
+            fixedOut = value;
+        }
+        else
+        {
+            Console.WriteLine("Vet att du har diskalkyli men bara siffror tack");
+            Thread.Sleep(1000);
+            validInput = false;
+        }
+    } while (!validInput);
+    do
+    {
+        validInput = true;
+        Console.WriteLine("Hur många pengar vill du äta upp de närmsta fyra veckorna?\n(Tryck ENTER för att komma vidare)");
+        if (int.TryParse(Console.ReadLine(), out int value))
+        {
+            food = value;
+        }
+        else
+        {
+            Console.WriteLine("Vet att du har diskalkyli men bara siffror tack");
+            Thread.Sleep(1000);
+            validInput = false;
+        }
+
+    } while (!validInput);
+
+    Excel.ConvertToCsv(excelFiles[0]);
+    Console.WriteLine("Pernillas schema");
+    Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~");
+    string[] schema = File.ReadAllLines("data.csv");
+
+    for (int i = 0; i < schema.Length; i++)
+    {
+        Console.WriteLine($"Vecka {i + 1}\n");
+        string line = schema[i];
         if (line[0].Equals('P'))
         {
             int day;
@@ -30,9 +76,9 @@ foreach (string file in files)
             string displayDayOff;
             string displayWeekPay;
 
-            for (int i = 0; i < 8 - 1; i++)
+            for (int j = 0; j < 8 - 1; j++)
             {
-                switch (i)
+                switch (j)
                 {
                     case 0:
                         day = (int)Weekday.Måndag;
@@ -162,9 +208,15 @@ foreach (string file in files)
 
         }
     }
+    displayMonthPay = String.Format("{0,-10} {1,10} {2,10}", "Månadslön", "", $"{Math.Round(monthPay, 2, MidpointRounding.AwayFromZero).ToString("0.00")}kr\n\n");
+    double brutto = Math.Round(monthPay * (1 - tax), 2, MidpointRounding.AwayFromZero);
+    Console.WriteLine(displayMonthPay);
+    Console.WriteLine($"Månadslön efter skatt: {brutto}kr");
+    Console.WriteLine($"Fasta utgifter: {fixedOut}kr");
+    Console.WriteLine($"Matbudget: {food}kr");
+    Console.WriteLine($"Pengar kvar efter utgifter: {brutto - fixedOut - food}kr");
+    File.Delete("data.csv");
 }
-displayMonthPay = String.Format("{0,-10} {1,10} {2,10}", "Månadslön", "", $"{Math.Round(monthPay, 2, MidpointRounding.AwayFromZero).ToString("0.00")}kr\n\n");
-Console.WriteLine(displayMonthPay);
 
 
 double CalculatePay(string[] hours, int weekday)
